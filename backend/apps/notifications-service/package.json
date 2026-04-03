@@ -1,0 +1,21 @@
+{
+  "name": "@ai-event/notifications-service",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@ai-event/kafka": "*",
+    "dotenv": "^16.4.1",
+    "nodemailer": "^6.9.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/nodemailer": "^6.4.14",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
