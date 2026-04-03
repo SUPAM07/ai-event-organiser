@@ -48,3 +48,10 @@ next-env.d.ts
 # clerk configuration (can include secrets)
 /.clerk/
 /frontend/.clerk/
+
+# Backend microservices node_modules
+/backend/apps/*/node_modules
+/backend/libs/*/node_modules
+
+# Drizzle generated migrations (keep drizzle folder but not lock files)
+/backend/libs/database/drizzle/*.sql
