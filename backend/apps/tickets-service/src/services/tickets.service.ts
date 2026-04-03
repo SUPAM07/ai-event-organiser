@@ -37,7 +37,7 @@ export class TicketsService {
         and(
           eq(tickets.eventId, dto.eventId),
           eq(tickets.userId, userId),
-          eq(tickets.status, 'confirmed')
+          eq(tickets.status, 'confirmed' as const)
         )
       )
       .limit(1);
@@ -98,7 +98,7 @@ export class TicketsService {
 
     if (!ticket) throw new NotFoundError('Ticket not found');
     if (ticket.userId !== userId) throw new ForbiddenError('Not authorized');
-    if (ticket.status === 'cancelled') throw new BadRequestError('Ticket already cancelled');
+    if (ticket.status === ('cancelled' as const)) throw new BadRequestError('Ticket already cancelled');
 
     const [updated] = await this.db
       .update(tickets)
@@ -156,7 +156,7 @@ export class TicketsService {
     }
 
     if (ticket.checkedIn) throw new BadRequestError('Attendee already checked in');
-    if (ticket.status === 'cancelled') throw new BadRequestError('Ticket is cancelled');
+    if (ticket.status === ('cancelled' as const)) throw new BadRequestError('Ticket is cancelled');
 
     const [updated] = await this.db
       .update(tickets)
