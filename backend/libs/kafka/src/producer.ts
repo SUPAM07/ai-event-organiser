@@ -33,7 +33,7 @@ export class KafkaProducer {
       messages: [
         {
           value: JSON.stringify(payload),
-          timestamp: Date.now().toString(),
+          timestamp: Date.now().toString(), // KafkaJS accepts string timestamps
         },
       ],
     });

@@ -1,4 +1,4 @@
-import { eq, and, sql } from 'drizzle-orm';
+import { eq, and, sql, desc } from 'drizzle-orm';
 import { v4 as uuidv4 } from 'uuid';
 import { getDb, tickets, events, NewTicket } from '@ai-event/database';
 import { KafkaProducer, createKafkaClient, KafkaTopics } from '@ai-event/kafka';
@@ -172,7 +172,7 @@ export class TicketsService {
       .select()
       .from(tickets)
       .where(eq(tickets.userId, userId))
-      .orderBy(tickets.registeredAt);
+      .orderBy(desc(tickets.registeredAt));
   }
 
   async getEventTickets(eventId: string, organizerId: string) {
@@ -189,7 +189,7 @@ export class TicketsService {
       .select()
       .from(tickets)
       .where(eq(tickets.eventId, eventId))
-      .orderBy(tickets.registeredAt);
+      .orderBy(desc(tickets.registeredAt));
   }
 
   async getByQrCode(qrCode: string) {

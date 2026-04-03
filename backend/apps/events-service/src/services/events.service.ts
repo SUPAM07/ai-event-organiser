@@ -42,8 +42,8 @@ export interface ListEventsQuery {
 function slugify(text: string): string {
   return text
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/[^a-z0-9-]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 export class EventsService {

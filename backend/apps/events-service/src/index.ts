@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import rateLimit from 'express-rate-limit';
 import { errorHandler, notFound } from '@ai-event/common';
 import eventsRoutes from './routes/events.routes';
 import { config } from './config';
@@ -14,6 +15,16 @@ app.use(cors({ credentials: true }));
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  '/api/events',
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 200,
+    standardHeaders: true,
+    legacyHeaders: false,
+  })
+);
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'events-service' });
