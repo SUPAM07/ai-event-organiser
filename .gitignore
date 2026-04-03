@@ -53,5 +53,5 @@ next-env.d.ts
 /backend/apps/*/node_modules
 /backend/libs/*/node_modules
 
-# Drizzle generated migrations (keep drizzle folder but not lock files)
-/backend/libs/database/drizzle/*.sql
+# Drizzle kit cache (not migration files)
+/backend/libs/database/.drizzle

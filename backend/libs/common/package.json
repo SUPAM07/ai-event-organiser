@@ -4,7 +4,6 @@
   "main": "src/index.js",
   "scripts": {},
   "dependencies": {
-    "express-validator": "^7.2.1",
-    "http-status-codes": "^2.3.0"
+    "express-validator": "^7.2.1"
   }
 }
