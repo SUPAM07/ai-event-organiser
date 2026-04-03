@@ -1,12 +1,25 @@
 {
   "name": "ai-event-organiser-backend",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "scripts": {
-    "dev": "convex dev",
-    "deploy": "convex deploy"
+    "dev:gateway": "npm run dev --workspace=apps/api-gateway",
+    "dev:auth": "npm run dev --workspace=apps/auth-service",
+    "dev:events": "npm run dev --workspace=apps/events-service",
+    "dev:tickets": "npm run dev --workspace=apps/tickets-service",
+    "dev:notifications": "npm run dev --workspace=apps/notifications-service",
+    "build": "npm run build --workspaces --if-present",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "db:push": "npm run db:push --workspace=libs/database",
+    "db:studio": "npm run db:studio --workspace=libs/database"
   },
-  "dependencies": {
-    "convex": "^1.28.2"
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
   }
 }

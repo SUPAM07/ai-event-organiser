@@ -3,16 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "workspaces": [
-    "frontend",
-    "backend"
+    "frontend"
   ],
   "scripts": {
     "dev": "npm run dev --workspace=frontend",
-    "dev:backend": "npm run dev --workspace=backend",
-    "dev:all": "npm run dev --workspace=frontend & npm run dev --workspace=backend",
+    "dev:backend:gateway": "cd backend && npm run dev:gateway",
+    "dev:backend:auth": "cd backend && npm run dev:auth",
+    "dev:backend:events": "cd backend && npm run dev:events",
+    "dev:backend:tickets": "cd backend && npm run dev:tickets",
+    "dev:backend:notifications": "cd backend && npm run dev:notifications",
     "build": "npm run build --workspace=frontend",
     "start": "npm run start --workspace=frontend",
     "lint": "npm run lint --workspace=frontend",
-    "deploy:backend": "npm run deploy --workspace=backend"
+    "backend:docker:up": "cd backend && npm run docker:up",
+    "backend:docker:down": "cd backend && npm run docker:down",
+    "backend:db:push": "cd backend && npm run db:push"
   }
 }
