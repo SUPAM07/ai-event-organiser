@@ -66,7 +66,7 @@ export class AuthService {
       console.warn('Failed to publish user.registered event:', err);
     }
 
-    const token = this.generateToken(user.id, user.email);
+    const token = this.generateToken(user.id, user.email, user.name);
     const { passwordHash: _, ...userWithoutPassword } = user;
     return { user: userWithoutPassword, token };
   }
@@ -87,7 +87,7 @@ export class AuthService {
       throw new UnauthorizedError('Invalid email or password');
     }
 
-    const token = this.generateToken(user.id, user.email);
+    const token = this.generateToken(user.id, user.email, user.name);
     const { passwordHash: _, ...userWithoutPassword } = user;
     return { user: userWithoutPassword, token };
   }
@@ -144,11 +144,11 @@ export class AuthService {
     }
   }
 
-  private generateToken(userId: string, email: string): string {
+  private generateToken(userId: string, email: string, name: string): string {
     return jwt.sign(
-      { sub: userId, email },
+      { sub: userId, email, name },
       config.jwt.secret,
-      { expiresIn: config.jwt.expiresIn } as jwt.SignOptions
+      { expiresIn: config.jwt.expiresIn }
     );
   }
 }

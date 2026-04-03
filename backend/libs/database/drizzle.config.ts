@@ -3,7 +3,8 @@ import type { Config } from 'drizzle-kit';
 export default {
   schema: './src/schema/index.ts',
   out: './drizzle',
+  dialect: 'postgresql',
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/ai_event_organiser',
+    url: process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/ai_event_organiser',
   },
 } satisfies Config;

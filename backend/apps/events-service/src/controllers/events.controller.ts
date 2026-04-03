@@ -6,7 +6,7 @@ const eventsService = new EventsService();
 export const createEvent = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const organizerId = req.user!.sub;
-    const organizerName = (req.user as any).name || 'Unknown';
+    const organizerName = req.user!.name;
     const event = await eventsService.create(organizerId, organizerName, req.body);
     res.status(201).json({ success: true, data: event });
   } catch (err) {

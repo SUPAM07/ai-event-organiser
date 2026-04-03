@@ -5,7 +5,4 @@ export const config = {
     secret: process.env.JWT_SECRET || 'change-me-in-production',
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   },
-  redis: {
-    url: process.env.REDIS_URL || 'redis://localhost:6380',
-  },
 };
