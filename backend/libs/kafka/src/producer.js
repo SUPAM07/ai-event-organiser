@@ -27,7 +27,7 @@ async function publishEvent(topic, key, value) {
       {
         key: key ? String(key) : null,
         value: JSON.stringify(value),
-        timestamp: Date.now().toString(),
+        timestamp: Date.now(),
       },
     ],
   });

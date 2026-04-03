@@ -8,7 +8,7 @@ const router = Router();
 
 router.get('/me', authenticateToken, getMyTickets);
 router.get('/event/:eventId', authenticateToken, getEventTickets);
-router.get('/checkin/:qrCode', authenticateToken, checkIn);
+router.patch('/checkin/:qrCode', authenticateToken, checkIn);
 
 router.post('/event/:eventId',
   authenticateToken,
