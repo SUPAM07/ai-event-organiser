@@ -6,7 +6,7 @@ let producer;
 function getKafkaClient() {
   return new Kafka({
     clientId: process.env.KAFKA_CLIENT_ID || 'ai-event-organiser',
-    brokers: (process.env.KAFKA_BROKERS || 'localhost:9092').split(','),
+    brokers: (process.env.KAFKA_BROKERS || 'localhost:9093').split(','),
   });
 }
 
