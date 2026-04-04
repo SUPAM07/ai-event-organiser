@@ -45,11 +45,14 @@ export class User {
     const db = getDb();
     const now = new Date().toISOString();
 
+    const ALLOWED_FIELDS = ['name', 'imageUrl', 'city', 'state', 'country', 'interests',
+      'role', 'freeEventsCreated', 'isOnboarded'];
+
     if (updates.interests && Array.isArray(updates.interests)) {
       updates.interests = JSON.stringify(updates.interests);
     }
 
-    const fields = Object.keys(updates).filter(k => k !== 'id');
+    const fields = Object.keys(updates).filter(k => ALLOWED_FIELDS.includes(k));
     if (fields.length === 0) return this.findById(id);
 
     const setClause = fields.map(f => `${f} = ?`).join(', ');

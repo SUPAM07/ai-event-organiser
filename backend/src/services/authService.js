@@ -79,6 +79,14 @@ export function getProfile(userId) {
 function _storeRefreshToken(userId, token) {
   const db = getDb();
   const id = uuidv4();
-  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+  const ttlMs = parseDuration(config.JWT_REFRESH_EXPIRES_IN);
+  const expiresAt = new Date(Date.now() + ttlMs).toISOString();
   db.prepare('INSERT INTO refresh_tokens (id, userId, token, expiresAt) VALUES (?, ?, ?, ?)').run(id, userId, token, expiresAt);
+}
+
+function parseDuration(str) {
+  const units = { s: 1000, m: 60_000, h: 3_600_000, d: 86_400_000 };
+  const match = String(str).match(/^(\d+)([smhd])$/);
+  if (!match) return 7 * 86_400_000;
+  return parseInt(match[1], 10) * (units[match[2]] || 86_400_000);
 }
